@@ -37,3 +37,6 @@ ompiled source #
 ehthumbs.db
 Thumbs.db
 myenv
+flasktaskr.db
+.gitignore.swp
+.idea

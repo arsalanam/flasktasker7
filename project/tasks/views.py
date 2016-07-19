@@ -2,7 +2,7 @@
 
 from flask import flash, redirect, render_template, request, \
     session, url_for, Blueprint
-from forms import AddTaskForm
+from project.tasks.forms import AddTaskForm
 from project import db
 from project.views import login_required
 from project.models import Task

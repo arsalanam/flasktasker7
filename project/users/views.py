@@ -8,7 +8,7 @@
 from flask import flash, redirect, render_template, request, \
     session, url_for, Blueprint
 from sqlalchemy.exc import IntegrityError
-from forms import RegisterForm, LoginForm
+from project.users.forms import RegisterForm, LoginForm
 from project import db, bcrypt
 from project.views import login_required
 from project.models import User
