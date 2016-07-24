@@ -17,14 +17,17 @@ class Task(db.Model):
     posted_date = db.Column(db.Date, default=datetime.datetime.utcnow())
     status = db.Column(db.Integer)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    sprint_id = db.Column(db.Integer, db.ForeignKey('sprints.id'))
 
-    def __init__(self, name, due_date, priority, posted_date, status, user_id):
+    def __init__(self, name = None, due_date= None, priority = None, posted_date = None, status =None, user_id = None , sprint_id = None):
         self.name = name
         self.due_date = due_date
         self.priority = priority
         self.posted_date = posted_date
         self.status = status
         self.user_id = user_id
+        self.sprint_id = sprint_id
+
 
     def __repr__(self):
         return '<name %r>' % (self.name)
@@ -49,3 +52,17 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User %r>' % (self.name)
+
+
+class Sprint(db.Model):
+
+    __tablename__ = 'sprints'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, unique=True, nullable=False)
+    tasks = db.relationship('Task', backref='current_sprint')
+    def __init__(self, name =None ):
+        self.name = name
+
+    def __repr__(self):
+        return '<Sprint {0} >'.format(self.name)
