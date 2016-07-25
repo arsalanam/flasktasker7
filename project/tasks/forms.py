@@ -5,9 +5,13 @@ from flask_wtf import Form
 from wtforms import TextField, DateField, IntegerField, \
     SelectField
 from wtforms.validators import DataRequired
+from project.views import db
+from project.models import Sprint
 
 
 class AddTaskForm(Form):
+    choices = Sprint.get_sprints()
+
     task_id = IntegerField()
     name = TextField('Task Name', validators=[DataRequired()])
     due_date = DateField(
@@ -22,4 +26,11 @@ class AddTaskForm(Form):
             ('6', '6'), ('7', '7'), ('8', '8'), ('9', '9'), ('10', '10')
         ]
     )
+    sprint = SelectField('Sprint', validators=[DataRequired()], choices=choices)
+
     status = IntegerField('Status')
+
+
+
+
+

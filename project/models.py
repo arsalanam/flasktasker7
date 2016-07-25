@@ -66,3 +66,13 @@ class Sprint(db.Model):
 
     def __repr__(self):
         return '<Sprint {0} >'.format(self.name)
+
+    @staticmethod
+    def get_sprints():
+        retval = []
+        sprints = db.session.query(Sprint).all()
+        index = 0
+        for sprint in sprints:
+            row = (str(sprint.id), sprint.name)
+            retval.append(row)
+        return tuple(retval)
